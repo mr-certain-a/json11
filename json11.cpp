@@ -106,6 +106,9 @@ static void dump(const string &value, string &out) {
             i += 2;
         } else {
             out += ch;
+            if (((static_cast<uint8_t>(ch) >= 0x81) && (static_cast<uint8_t>(ch) <= 0x9f)) ||
+                ((static_cast<uint8_t>(ch) >= 0xe0) && (static_cast<uint8_t>(ch) <= 0xfc)))
+                out += value[++i];
         }
     }
     out += '"';
